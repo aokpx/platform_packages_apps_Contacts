@@ -74,7 +74,7 @@ public class CallStatsDetailHelper {
             labelText = numberFormattedLabel;
         }
 
-        float in = 0, out = 0, missed = 0;
+        float in = 0, out = 0, missed = 0, rejected = 0;
         float ratio = getDetailValue(details, type, byDuration) /
                       getDetailValue(first, type, byDuration);
 
@@ -84,6 +84,7 @@ public class CallStatsDetailHelper {
             out = getDetailValue(details, Calls.OUTGOING_TYPE, byDuration) * ratio / full;
             if (!byDuration) {
                 missed = getDetailValue(details, Calls.MISSED_TYPE, byDuration) * ratio / full;
+                rejected = getDetailValue(details, Calls.REJECTED_TYPE, byDuration) * ratio / full;
             }
         } else if (type == Calls.INCOMING_TYPE) {
             in = ratio;
@@ -91,9 +92,11 @@ public class CallStatsDetailHelper {
             out = ratio;
         } else if (type == Calls.MISSED_TYPE) {
             missed = ratio;
+        } else if (type == Calls.REJECTED_TYPE) {
+            rejected = ratio;
         }
 
-        views.barView.setRatios(in, out, missed);
+        views.barView.setRatios(in, out, (missed + rejected));
         views.nameView.setText(nameText);
         views.numberView.setText(numberText);
         views.labelView.setText(labelText);
@@ -102,9 +105,14 @@ public class CallStatsDetailHelper {
         if (byDuration && type == Calls.MISSED_TYPE) {
             views.percentView.setText(getCallCountString(mResources, details.missedCount));
         } else {
-            float percent = getDetailValue(details, type, byDuration) * 100F /
-                            getDetailValue(total, type, byDuration);
-            views.percentView.setText(String.format("%.1f%%", percent));
+            if (byDuration && type == Calls.REJECTED_TYPE){
+                views.percentView.setText(getCallCountString(mResources, details.rejectedCount));
+            } else {
+                float percent = getDetailValue(details, type, byDuration) * 100F /
+                                getDetailValue(total, type, byDuration);
+                views.percentView.setText(String.format("%.1f%%", percent));
+
+            }
         }
     }
 

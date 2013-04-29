@@ -360,6 +360,9 @@ public class CallLogFragment extends ListFragment
             case Calls.MISSED_TYPE:
                 item = menu.findItem(R.id.show_missed_only);
                 break;
+            case Calls.REJECTED_TYPE:
+                item = menu.findItem(R.id.show_rejected_only);
+                break;
             case Calls.VOICEMAIL_TYPE:
                 menu.findItem(R.id.show_voicemails_only);
                 break;
@@ -374,6 +377,7 @@ public class CallLogFragment extends ListFragment
         menu.findItem(R.id.show_incoming_only).setVisible(true);
         menu.findItem(R.id.show_outgoing_only).setVisible(true);
         menu.findItem(R.id.show_missed_only).setVisible(true);
+        menu.findItem(R.id.show_rejected_only).setVisible(true);
         menu.findItem(R.id.show_voicemails_only).setVisible(true);
     }
 
@@ -402,6 +406,12 @@ public class CallLogFragment extends ListFragment
                 registerPhoneCallReceiver();
                 mCallLogQueryHandler.fetchCalls(Calls.MISSED_TYPE);
                 updateFilterTypeAndHeader(Calls.MISSED_TYPE);
+                return true;
+            
+            case R.id.show_rejected_only:
+                registerPhoneCallReceiver();
+                mCallLogQueryHandler.fetchCalls(Calls.REJECTED_TYPE);
+                updateFilterTypeAndHeader(Calls.REJECTED_TYPE);
                 return true;
 
             case R.id.show_voicemails_only:
@@ -437,6 +447,9 @@ public class CallLogFragment extends ListFragment
                 break;
             case Calls.MISSED_TYPE:
                 showFilterStatus(R.string.call_log_missed_header);
+                break;
+            case Calls.REJECTED_TYPE:
+                showFilterStatus(R.string.call_log_rejected_header);
                 break;
             case Calls.VOICEMAIL_TYPE:
                 showFilterStatus(R.string.call_log_voicemail_header);
@@ -478,7 +491,7 @@ public class CallLogFragment extends ListFragment
                 int callType = cursor.getInt(CallLogQuery.CALL_TYPE);
                 if (!number.startsWith("+") &&
                        (callType == Calls.INCOMING_TYPE
-                                || callType == Calls.MISSED_TYPE)) {
+                                || callType == Calls.MISSED_TYPE || callType == Calls.REJECTED_TYPE)) {
                     // If the caller-id matches a contact with a better qualified number, use it
                     String countryIso = cursor.getString(CallLogQuery.COUNTRY_ISO);
                     number = mAdapter.getBetterNumberFromContacts(number, countryIso);

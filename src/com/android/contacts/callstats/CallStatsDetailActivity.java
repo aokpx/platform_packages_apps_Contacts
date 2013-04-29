@@ -65,6 +65,8 @@ public class CallStatsDetailActivity extends Activity {
     private TextView mOutDuration;
     private TextView mMissedSummary;
     private TextView mMissedCount;
+    private TextView mRejectedSummary;
+    private TextView mRejectedCount;
     private PieChartView mPieChart;
 
     private CallStatsDetails mData;
@@ -106,6 +108,8 @@ public class CallStatsDetailActivity extends Activity {
         mOutDuration = (TextView) findViewById(R.id.out_duration);
         mMissedSummary = (TextView) findViewById(R.id.missed_summary);
         mMissedCount = (TextView) findViewById(R.id.missed_count);
+        mRejectedSummary = (TextView) findViewById(R.id.rejected_summary);
+        mRejectedCount = (TextView) findViewById(R.id.rejected_count);
         mPieChart = (PieChartView) findViewById(R.id.pie_chart);
 
         configureActionBar();
@@ -204,6 +208,23 @@ public class CallStatsDetailActivity extends Activity {
                     mResources, mData.missedCount));
         } else {
             findViewById(R.id.missed_container).setVisibility(View.GONE);
+        }
+
+        if (shouldDisplay(Calls.REJECTED_TYPE, false)) {
+            final String rejectedCount =
+                    CallStatsDetailHelper.getCallCountString(mResources, mData.rejectedCount);
+
+            if (byDuration) {
+                mRejectedSummary.setText(getString(R.string.call_stats_rejected));
+            } else {
+                mRejectedSummary.setText(getString(R.string.call_stats_rejected_percent,
+                        mData.getCountPercentage(Calls.REJECTED_TYPE)));
+                mPieChart.addSlice(mData.rejectedCount, mResources.getColor(R.color.call_stats_rejected));
+            }
+            mRejectedCount.setText(CallStatsDetailHelper.getCallCountString(
+                    mResources, mData.rejectedCount));
+        } else {
+            findViewById(R.id.rejected_container).setVisibility(View.GONE);
         }
 
         mPieChart.generatePath();

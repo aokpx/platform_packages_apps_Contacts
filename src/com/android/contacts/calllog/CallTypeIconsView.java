@@ -83,6 +83,8 @@ public class CallTypeIconsView extends View {
                 return mResources.outgoing;
             case Calls.MISSED_TYPE:
                 return mResources.missed;
+            case Calls.REJECTED_TYPE:
+                return mResources.rejected;
             case Calls.VOICEMAIL_TYPE:
                 return mResources.voicemail;
             default:
@@ -111,6 +113,7 @@ public class CallTypeIconsView extends View {
         public final Drawable incoming;
         public final Drawable outgoing;
         public final Drawable missed;
+        public final Drawable rejected;
         public final Drawable voicemail;
         public final int iconMargin;
 
@@ -119,6 +122,7 @@ public class CallTypeIconsView extends View {
             incoming = r.getDrawable(R.drawable.ic_call_incoming_holo_dark);
             outgoing = r.getDrawable(R.drawable.ic_call_outgoing_holo_dark);
             missed = r.getDrawable(R.drawable.ic_call_missed_holo_dark);
+            rejected = r.getDrawable(R.drawable.ic_call_rejected_holo_dark);
             voicemail = r.getDrawable(R.drawable.ic_call_voicemail_holo_dark);
             iconMargin = r.getDimensionPixelSize(R.dimen.call_log_icon_margin);
         }

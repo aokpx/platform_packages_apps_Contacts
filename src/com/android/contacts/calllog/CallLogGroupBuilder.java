@@ -80,9 +80,9 @@ public class CallLogGroupBuilder {
                 // never group voicemail.
                 shouldGroup = false;
             } else {
-                // Incoming, outgoing, and missed calls group together.
+                // Incoming, outgoing, rejected, and missed calls group together.
                 shouldGroup = (callType == Calls.INCOMING_TYPE || callType == Calls.OUTGOING_TYPE ||
-                        callType == Calls.MISSED_TYPE);
+                        callType == Calls.MISSED_TYPE || callType == Calls.REJECTED_TYPE);
             }
 
             if (shouldGroup) {

@@ -31,6 +31,8 @@ public class CallTypeHelper {
     private final CharSequence mOutgoingName;
     /** Name used to identify missed calls. */
     private final CharSequence mMissedName;
+    /** Name used to identify rejected calls. */
+    private final CharSequence mRejectedName;
     /** Name used to identify voicemail calls. */
     private final CharSequence mVoicemailName;
     /** Color used to identify new missed calls. */
@@ -43,6 +45,7 @@ public class CallTypeHelper {
         mIncomingName = resources.getString(R.string.type_incoming);
         mOutgoingName = resources.getString(R.string.type_outgoing);
         mMissedName = resources.getString(R.string.type_missed);
+        mRejectedName = resources.getString(R.string.type_rejected);
         mVoicemailName = resources.getString(R.string.type_voicemail);
         mNewMissedColor = resources.getColor(R.color.call_log_missed_call_highlight_color);
         mNewVoicemailColor = resources.getColor(R.color.call_log_voicemail_highlight_color);
@@ -59,6 +62,9 @@ public class CallTypeHelper {
 
             case Calls.MISSED_TYPE:
                 return mMissedName;
+                
+            case Calls.REJECTED_TYPE:
+                return mRejectedName;
 
             case Calls.VOICEMAIL_TYPE:
                 return mVoicemailName;
@@ -81,6 +87,10 @@ public class CallTypeHelper {
 
             case Calls.MISSED_TYPE:
                 return mNewMissedColor;
+            
+            case Calls.REJECTED_TYPE:
+                // Rejected calls are not highlighted.
+                return null;
 
             case Calls.VOICEMAIL_TYPE:
                 return mNewVoicemailColor;

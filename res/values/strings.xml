@@ -611,6 +611,9 @@
     <!-- Title for missed call details screen -->
     <string name="type_missed">Missed call</string>
 
+    <!-- Title for rejected call details screen -->
+    <string name="type_rejected">Rejected call</string>
+
     <!-- Title for voicemail details screen -->
     <string name="type_voicemail">Voicemail</string>
 
@@ -1658,6 +1661,9 @@
     <!-- The header to show that call log is only showing missed calls. [CHAR LIMIT=40] -->
     <string name="call_log_missed_header">Missed calls only</string>
 
+    <!-- The header to show that call log is only showing rejected calls. [CHAR LIMIT=40] -->
+    <string name="call_log_rejected_header">Rejected calls only</string>
+
     <!--  Voicemail status message shown at the top of call log to notify the user that no new
 voicemails are currently available. This can happen when both notification as well as data
 connection to the voicemail server is lost. [CHAR LIMIT=64] -->
@@ -1709,6 +1715,9 @@ connection to the voicemail server is lost. [CHAR LIMIT=64] -->
     <!-- Menu item used to show only missed in the call log. [CHAR LIMIT=30] -->
     <string name="menu_show_missed_only">Show missed only</string>
 
+    <!-- Menu item used to show only rejected in the call log. [CHAR LIMIT=30] -->
+    <string name="menu_show_rejected_only">Show rejected only</string>
+
     <!-- Menu item used to show only voicemails in the call log. [CHAR LIMIT=30] -->
     <string name="menu_show_voicemails_only">Show voicemails only</string>
 
@@ -1753,6 +1762,14 @@ connection to the voicemail server is lost. [CHAR LIMIT=64] -->
     -->
 
     <string name="description_call_log_missed_call">Missed call</string>
+
+    <!-- String describing the icon in the call log used to represent a rejected call.
+
+        Note: AccessibilityServices use this attribute to announce what the view represents.
+              This is especially valuable for views without textual representation like ImageView.
+    -->
+
+    <string name="description_call_log_rejected_call">rejected call</string>
 
     <!-- String describing the icon in the call log used to represent a voicemail left to the user.
 
@@ -1891,10 +1908,13 @@ connection to the voicemail server is lost. [CHAR LIMIT=64] -->
     <string name="call_stats_nav_incoming">Incoming</string>
     <string name="call_stats_nav_outgoing">Outgoing</string>
     <string name="call_stats_nav_missed">Missed</string>
+    <string name="call_stats_nav_rejected">Rejected</string>
     <string name="call_stats_incoming">Incoming: <xliff:g id="percent">%d</xliff:g>%%</string>
     <string name="call_stats_outgoing">Outgoing: <xliff:g id="percent">%d</xliff:g>%%</string>
     <string name="call_stats_missed">Missed</string>
     <string name="call_stats_missed_percent">Missed: <xliff:g id="percent">%d</xliff:g>%%</string>
+    <string name="call_stats_rejected">Rejected</string>
+    <string name="call_stats_rejected_percent">Rejected: <xliff:g id="percent">%d</xliff:g>%%</string>
     <string name="call_stats_header_total">Total: <xliff:g id="call_count">%s</xliff:g>, <xliff:g id="duration">%s</xliff:g></string>
     <string name="call_stats_header_total_callsonly">Total: <xliff:g id="call_count">%s</xliff:g></string>
     <string name="call_stats_filter_from">Start date</string>

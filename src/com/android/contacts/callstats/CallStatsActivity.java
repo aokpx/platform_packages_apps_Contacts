@@ -59,7 +59,8 @@ public class CallStatsActivity extends ListActivity implements
         R.drawable.ic_call_inout_holo_dark,
         R.drawable.ic_call_incoming_holo_dark,
         R.drawable.ic_call_outgoing_holo_dark,
-        R.drawable.ic_call_missed_holo_dark
+        R.drawable.ic_call_missed_holo_dark,
+        R.drawable.ic_call_rejected_holo_dark
     };
 
     private String[] mNavItems;

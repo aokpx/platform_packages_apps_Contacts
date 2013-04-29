@@ -46,6 +46,7 @@ public class CallStatsDetails implements CallDetailHeader.Data, Parcelable {
     public int incomingCount;
     public int outgoingCount;
     public int missedCount;
+    public int rejectedCount;
 
     public CallStatsDetails(CharSequence number, ContactInfo info,
             String countryIso, String geocode, long date) {
@@ -103,7 +104,7 @@ public class CallStatsDetails implements CallDetailHeader.Data, Parcelable {
     }
 
     public int getTotalCount() {
-        return incomingCount + outgoingCount + missedCount;
+        return incomingCount + outgoingCount + missedCount + rejectedCount;
     }
 
     public void addTimeOrMissed(int type, long time) {
@@ -118,6 +119,9 @@ public class CallStatsDetails implements CallDetailHeader.Data, Parcelable {
                 break;
             case Calls.MISSED_TYPE:
                 missedCount++;
+                break;
+            case Calls.REJECTED_TYPE:
+                rejectedCount++;
                 break;
         }
     }
@@ -140,6 +144,8 @@ public class CallStatsDetails implements CallDetailHeader.Data, Parcelable {
                 return outDuration;
             case Calls.MISSED_TYPE:
                 return (long) missedCount;
+            case Calls.REJECTED_TYPE:
+                return (long) rejectedCount;
             default:
                 return getFullDuration();
         }
@@ -153,6 +159,8 @@ public class CallStatsDetails implements CallDetailHeader.Data, Parcelable {
                 return outgoingCount;
             case Calls.MISSED_TYPE:
                 return missedCount;
+            case Calls.REJECTED_TYPE:
+                return rejectedCount;
             default:
                 return getTotalCount();
         }
@@ -164,11 +172,12 @@ public class CallStatsDetails implements CallDetailHeader.Data, Parcelable {
         this.incomingCount += other.incomingCount;
         this.outgoingCount += other.outgoingCount;
         this.missedCount += other.missedCount;
+        this.rejectedCount += other.rejectedCount;
     }
 
     public void reset() {
         this.inDuration = this.outDuration = 0;
-        this.incomingCount = this.outgoingCount = this.missedCount = 0;
+        this.incomingCount = this.outgoingCount = this.missedCount = this.rejectedCount = 0;
     }
 
     /* Parcelable interface */
@@ -196,6 +205,7 @@ public class CallStatsDetails implements CallDetailHeader.Data, Parcelable {
         out.writeInt(incomingCount);
         out.writeInt(outgoingCount);
         out.writeInt(missedCount);
+        out.writeInt(rejectedCount);
     }
 
     public static final Parcelable.Creator<CallStatsDetails> CREATOR =
@@ -226,6 +236,7 @@ public class CallStatsDetails implements CallDetailHeader.Data, Parcelable {
         incomingCount = in.readInt();
         outgoingCount = in.readInt();
         missedCount = in.readInt();
+        rejectedCount = in.readInt();
     }
 
 }

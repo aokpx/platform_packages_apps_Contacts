@@ -45,5 +45,6 @@
     <item>@string/call_stats_nav_incoming</item>
     <item>@string/call_stats_nav_outgoing</item>
     <item>@string/call_stats_nav_missed</item>
+    <item>@string/call_stats_nav_rejected</item>
   </string-array>
 </resources>
