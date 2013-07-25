@@ -20,7 +20,7 @@
     <color name="shortcut_overlay_text_background">#7f000000</color>
 
     <color name="quickcontact_list_divider">#ffcdcdcd</color>
-    <color name="quickcontact_list_background">#00000000</color>
+    <color name="quickcontact_list_background">#ff000000</color>
     <color name="quickcontact_tab_indicator">@android:color/holo_blue_light</color>
 
     <!-- Color of the background of the contact detail and editor pages -->
@@ -97,7 +97,7 @@
     <color name="call_log_voicemail_status_action_text_color">#33b5e5</color>
     <color name="call_detail_background">#00000000</color>
     <color name="call_detail_separator">#ff33b5e5</color>
-    <color name="call_detail_photo_bg">#7f000000</color>
+    <color name="call_detail_photo_bg">#CC000000</color>
     <color name="call_log_divider">#55ffffff</color>
     <color name="detail_tab_carousel_tab_label_Background_color">#7f000000</color>
     <color name="white_text">#ffffffff</color>
